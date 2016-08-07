@@ -4,3 +4,5 @@
 Homestead.yaml
 Homestead.json
 .env
+public/css/app.css
+public/css/app.css.map

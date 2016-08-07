@@ -1,2 +1,58 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$brand-primary: #00e39f;
 
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+@import url(https://fonts.googleapis.com/css?family=Assistant:400,300);
+
+.btn
+{
+	border: 0px;
+	font-weight: bold;
+	letter-spacing: 0.03em;
+}
+
+.navbar-pink
+{
+	background-color: #E30044;
+	color: white;
+	border-radius: 0px;
+	border: none;
+	height: 60px;
+	a, a:link
+	{
+		color: white;
+		font-size: 21px;
+		font-family: 'Fjalla One', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+	}
+}
+
+h1
+{
+	font-family: 'Fjalla One', sans-serif;	
+	color: #E30044;
+}
+
+p, a , a:link
+{
+	font-family: 'Assistant', sans-serif;
+	line-height: 1.5;
+	font-size: 16px;
+}
+
+.content
+{
+	max-width: 700px;
+	margin: auto;
+	padding-top: 30px;
+}
+.right-button-container
+{
+	float: right;
+	button, a, p, a:link
+	{
+		text-align: left;
+	}
+}

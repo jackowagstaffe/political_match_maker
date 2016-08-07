@@ -1,45 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato', sans-serif;
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
-        </div>
-    </body>
-</html>
+@extends('base')
+@section('main-content')
+    <h1>Find the perfect MP for you</h1>
+    <p class="lead">Poltical match maker will find the perfect MP for you using the they work for us database.</p>
+    <p>Simply complete the questionnaire and the perfect MP will be found for you based on their voting record and your answers.</p>
+    @include('components/next-button', 
+        [
+            'text' => 'Start', 
+            'url' => route('page', ['page_id' => 1])
+        ]
+    )
+@stop
