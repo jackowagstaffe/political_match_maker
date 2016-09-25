@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\MemberFact;
+
 class PolicyData
 {
     /**
@@ -270,5 +272,20 @@ class PolicyData
     public function getSets()
     {
         return $this->sets;
+    }
+
+    public function getTextFromNumber($number)
+    {
+        return $this->policies[$number];
+    }
+
+    public function getTextFromMemberFact(MemberFact $fact)
+    {
+        return $this->getTextFromNumber($fact->getDreamMpNo());
+    }
+
+    public function getNumbersFromSet($name)
+    {
+        return $this->sets[$name];
     }
 }

@@ -30,7 +30,7 @@ class GetData extends Command
      */
     public function __construct(TheyWorkForYou $they_work_for_you)
     {
-        $this->theyWorkForYou;
+        $this->theyWorkForYou = $they_work_for_you;
 
         parent::__construct();
     }
@@ -43,5 +43,6 @@ class GetData extends Command
     public function handle()
     {
         $this->theyWorkForYou->getMps();
+        $this->theyWorkForYou->getMpInfo($this);
     }
 }

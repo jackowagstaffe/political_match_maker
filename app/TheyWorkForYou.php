@@ -30,17 +30,29 @@ class TheyWorkForYou
         }
     }
 
-    public function getMpInfo()
+    public function getMpInfo($command = null)
     {
-        $mps = Member::all()
+        $mps = Member::all();
         foreach ($mps as $mp) {
-            $data = $this->get('getMPsInfo', ['id' => $mp->person_id]);
-            foreach ($data as $key => $value) {
-                $fact = new MemberFact();
-                $fact->id = $mp->id;
-                $fact->key = $key;
-                $fact->value = $value;
-                $fact->save();
+            if (!is_null($command)) {
+                $command->info('MP: ' . $mp->id);
+            }
+            try {
+                $data = $this->get('getMPsInfo', ['id' => $mp->person_id]);
+                foreach ($data as $object) {
+                    foreach ($object as $key => $value) {
+                        if (!is_object($value)) {
+                            $fact = new MemberFact();
+                            $fact->member_id = $mp->id;
+                            $fact->key = $key;
+                            $fact->value = $value;
+                            $fact->save();
+                        }
+                    }
+                }
+                $command->info(' --info saved');
+            } catch (\Exception $e) {
+                $command->error($e->getMessage());
             }
         }
     }
@@ -54,7 +66,7 @@ class TheyWorkForYou
         ];
         $all_params = array_merge($params, $key_param);
 
-        $response $this->guzzle->request('GET', $url, ['query' => $all_params]);
+        $response = $this->guzzle->request('GET', $url, ['query' => $all_params]);
         $data = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $response->getBody()->getContents());
         $data = json_decode($data);
 

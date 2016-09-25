@@ -21,6 +21,11 @@ class CollectController extends Controller
 
     public function getMps()
     {
-        $this->theyWorkForYou->getMps();
+        // $this->theyWorkForYou->getMps();
+    }
+
+    public function getMpInfo()
+    {
+        // $this->theyWorkForYou->getMpInfo();
     }
 }
