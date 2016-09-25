@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -206,4 +206,7 @@ return [
 
     ],
 
+    'they_work_for_you' => [
+        'url' => 'https://www.theyworkforyou.com/api/'
+    ],
 ];

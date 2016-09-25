@@ -31,7 +31,7 @@ $brand-primary: #00e39f;
 
 h1
 {
-	font-family: 'Fjalla One', sans-serif;	
+	font-family: 'Fjalla One', sans-serif;
 	color: #E30044;
 }
 
@@ -55,4 +55,12 @@ p, a , a:link
 	{
 		text-align: left;
 	}
+}
+
+.footer
+{
+    a, a:link
+    {
+        color: black;
+    }
 }

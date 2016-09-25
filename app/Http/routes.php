@@ -15,11 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/page/{page_id}', ['as' => 'page', function ($page_id) {
-	if (!is_numeric($page_id)) {
-		throw new \Exception('Not a valid page id');
-	}
-	$view_data = ['page_id' => $page_id];
-
-    return view('pages/page_' . $page_id, $view_data);
-}]);
+Route::get('/page/{page_id}', 'QuestionnaireController@page')->name('page');
+Route::get('/get/mps', 'CollectController@getMps');
