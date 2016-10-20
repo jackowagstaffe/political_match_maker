@@ -3,7 +3,7 @@ Site using they work for you API to make a mock dating app to find your perfect 
 
 ## Notes on site
  - Base view and one or two pages created in `resources/views`
- - Migrations for creating some of the tables in `database/migrations`
+ - Migrations for creating the tables in `database/migrations`
  - Classes in `/app` a mixture of eloquent models and other classes - needs seperating out
  - `app/Console/Commands/GetData.php` runs a command to pull data from They Work For You - an API key needs to be present in config for it to run
  - `app/HTTP/Controllers` contains controllers - CollectController commented out as it can trigger a lot of API calls
