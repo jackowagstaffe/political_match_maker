@@ -18,7 +18,7 @@
         <div class="container">
             <div class="content">
                 @section('main-content')
-                    <p>Some content is in here lol</p>
+                    <p>Some content is in here</p>
                 @show
             </div>
         </div>

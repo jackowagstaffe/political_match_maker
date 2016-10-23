@@ -2,74 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Policy;
 
-class PolicyPosition
+class PolicyPosition extends Model
 {
-    protected $policy = null;
-    protected $absent = null;
-    protected $distance = null;
-    protected $bothVoted = null;
-    protected $hasStrongVote = null;
-
-    public function setPolicy(Policy $policy)
-    {
-        $this->policy = $policy;
-    }
-
-    public function setAbsent($absent)
-    {
-        $this->absent = $absent;
-    }
-
-    public function setDistance($distance)
-    {
-        $this->distance = floatval($distance);
-    }
-
-    public function setBothVoted($both_voted)
-    {
-        $this->bothVoted = $both_voted;
-    }
-
-    public function setHasStrongVote($has_strong)
-    {
-        $this->hasStrongVote = $has_strong;
-    }
-
     public function getPolicy()
     {
-        return $this->policy;
-    }
-
-    public function getPolicyText()
-    {
-        return $this->policy->getText();
-    }
-
-    public function getPolicyTextNoHtml()
-    {
-        return $this->policy->getTextNoHtml();
-    }
-
-    public function getAbsent()
-    {
-        return $this->absent;
-    }
-
-    public function getDistance()
-    {
-        return $this->distance;
-    }
-
-    public function getBothVoted()
-    {
-        return $this->bothVoted;
-    }
-
-    public function  getHasStrongVote()
-    {
-        return $this->hasStrongVote;
+        return Policy::where('id', $this->policy_id)->first();
     }
 
     public function getPositonText()

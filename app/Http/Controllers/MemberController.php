@@ -10,11 +10,17 @@ use App\PolicyData;
 
 class MemberController extends Controller
 {
-    public function view(Member $mp, PolicyData $policy_data)
+    public function view(Member $mp)
     {
-        return view('view_mp', [
+        return view('mp/view', [
             'mp' => $mp,
-            'policy_data' => $policy_data,
+        ]);
+    }
+
+    public function index()
+    {
+        return view('mp/index', [
+            'mps' => Member::all(),
         ]);
     }
 }

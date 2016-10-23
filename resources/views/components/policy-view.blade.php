@@ -1,5 +1,5 @@
 <div class="policy">
-    <p class="text-center">{!! $policy_position->getPolicyText() !!}</p>
+    <p class="text-center">{!! $policy_position->getPolicy()->text !!}</p>
     <h2 class="text-center policy-text">{{ $policy_position->getPositonText() }}</h2>
     <div class="agreement-bar">
         <div class="disagreement">

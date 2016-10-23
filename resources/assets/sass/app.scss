@@ -4,6 +4,11 @@ $brand-primary: #00e39f;
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
 @import url(https://fonts.googleapis.com/css?family=Assistant:400,300);
 
+a:link:hover
+{
+    text-decoration: none;
+}
+
 .policy
 {
     max-width: 750px;
@@ -101,6 +106,7 @@ p, a , a:link
 	font-family: 'Assistant', sans-serif;
 	line-height: 1.5;
 	font-size: 16px;
+    color: black;
 }
 
 .content
@@ -116,6 +122,18 @@ p, a , a:link
 	{
 		text-align: left;
 	}
+}
+
+.back-bar
+{
+    padding: 5px;
+    border-radius: 3px;
+
+    &:hover
+    {
+        background-color:#00ca8d;
+        text-decoration: none;
+    }
 }
 
 .footer

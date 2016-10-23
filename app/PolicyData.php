@@ -276,7 +276,11 @@ class PolicyData
 
     public function getTextFromNumber($number)
     {
-        return $this->policies[$number];
+        if (array_key_exists($number, $this->policies)) {
+            return $this->policies[$number];
+        }
+
+        return null;
     }
 
     public function getTextFromMemberFact(MemberFact $fact)

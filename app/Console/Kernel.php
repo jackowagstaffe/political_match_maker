@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Commands\Inspire::class,
         Commands\GetData::class,
+        Commands\CreatePolicies::class,
+        Commands\DeletePolicies::class,
     ];
 
     /**
