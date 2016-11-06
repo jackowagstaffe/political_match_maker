@@ -1,11 +1,11 @@
 @extends('base')
 @section('main-content')
-	<h1>Welfare</h1>
-	<p>Do you agree or disagree with the following?</p>
+	<h1>Social Issues</h1>
+	<p>Do you agree or disagree with these things?</p>
 
     <form action="{{ route('submit_page', ['page_id' => $page_id]) }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        @foreach($sets['welfare'] as $policy)
+        @foreach($sets['social'] as $policy)
             <div class="policy-question">
                 <div class="pq-text">
                     {{ $policy->getTextNoHtml() }}

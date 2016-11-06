@@ -3,6 +3,7 @@
 namespace App;
 
 use App\MemberFact;
+use App\Policy;
 
 class PolicyData
 {
@@ -291,5 +292,23 @@ class PolicyData
     public function getNumbersFromSet($name)
     {
         return $this->sets[$name];
+    }
+
+    public function getSetsObjects()
+    {
+        $sets = $this->getSets();
+        $sets_objects = [];
+
+        foreach($sets as $key => $value) {
+            $data = [];
+
+            foreach($value as $policy_number) {
+                $data[] = Policy::where('number', $policy_number)->first();
+            }
+
+            $sets_objects[$key] = $data;
+        }
+
+        return $sets_objects;
     }
 }

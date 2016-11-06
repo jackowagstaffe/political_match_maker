@@ -101,7 +101,7 @@ h1
 	color: #E30044;
 }
 
-p, a , a:link
+p, a , a:link, button
 {
 	font-family: 'Assistant', sans-serif;
 	line-height: 1.5;
@@ -141,5 +141,93 @@ p, a , a:link
     a, a:link
     {
         color: black;
+    }
+}
+
+.policy-question
+{
+    @extend .panel;
+    @extend .panel-default;
+
+    .pq-text
+    {
+        @extend .panel-heading;
+    }
+
+    .pq-buttons
+    {
+        input[type=radio]
+        {
+            display: none;
+        }
+
+        input[type=radio]:checked + label:before
+        {
+            font-family: FontAwesome;
+            content: "\f00c";
+        }
+
+        input[type=radio] + label
+        {
+            height: 30px;
+            padding-top: 5px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        .agree-label
+        {
+            border-right: 1px solid #ddd;
+        }
+
+        input[type=radio]:checked + label.agree-label
+        {
+            background-color: #00e39f;
+        }
+
+        input[type=radio]:checked + label.disagree-label
+        {
+            background-color: #E30044;
+            color: white;
+        }
+    }
+}
+
+.left-np
+{
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.right-np
+{
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+@media (max-width: 767px)
+{
+    .right-button-container
+    {
+        width: 100%;
+
+    	button, a, p, a:link
+    	{
+    		width: 100%;
+            text-align: center;
+    	}
+    }
+
+    .left-np
+    {
+        padding-right: 15px;
+        margin-right: 0px;
+    }
+
+    .right-np
+    {
+        padding-left: 15px;
+        margin-left: 0px;
     }
 }
