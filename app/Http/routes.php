@@ -18,7 +18,8 @@ Route::get('/', function () {
 // Questionnaire
 Route::get('/page/{page_id}', 'QuestionnaireController@page')->name('page');
 Route::post('/page/{page_id}', 'QuestionnaireController@submit')->name('submit_page');
-Route::get('/result', 'QuestionnaireController@result')->name('result');
+Route::get('/result', 'QuestionnaireController@awaitResult')->name('result');
+Route::get('/get-result', 'QuestionnaireController@pollResult')->name('get_result');
 
 // Routes for collecting data
 // (may be disabled to prevent accidentally going over api limit)

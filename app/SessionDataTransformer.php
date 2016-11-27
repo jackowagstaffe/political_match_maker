@@ -7,6 +7,7 @@ use App\Policy;
 class SessionDataTransformer
 {
     protected $outData;
+    protected $hash = null;
 
     public function setData($in_data)
     {
@@ -19,7 +20,7 @@ class SessionDataTransformer
 
                 if ($value === 'agree') {
                     $agrees = true;
-                } else if ($value === 'disagree') {
+                } elseif ($value === 'disagree') {
                     $agrees = false;
                 } else {
                     throw new Exception('Invalid session data');
@@ -33,5 +34,14 @@ class SessionDataTransformer
     public function getData()
     {
         return $this->outData;
+    }
+
+    public function getHash()
+    {
+        if (is_null($this->hash)) {
+            $this->hash = md5(serialize($this->outData));
+        }
+
+        return $this->hash;
     }
 }

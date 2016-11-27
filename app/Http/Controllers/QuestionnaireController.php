@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PolicyData;
+use App\Member;
+use App\Match;
 use App\Http\Requests;
 use App\ResultGenerator;
 use App\SessionDataTransformer;
+use App\Jobs\GenerateResult;
 
 class QuestionnaireController extends Controller
 {
@@ -15,9 +18,9 @@ class QuestionnaireController extends Controller
     public function page($page_id, PolicyData $policy_data)
     {
         if (!is_numeric($page_id)) {
-    		throw new \Exception('Not a valid page id');
-    	}
-    	$view_data = [
+            throw new \Exception('Not a valid page id');
+        }
+        $view_data = [
             'page_id' => $page_id,
             'sets' => $policy_data->getSetsObjects(),
         ];
@@ -43,15 +46,34 @@ class QuestionnaireController extends Controller
         }
     }
 
-    public function result(ResultGenerator $gen, SessionDataTransformer $transformer)
+    public function awaitResult(SessionDataTransformer $transformer)
     {
         $transformer->setData(session()->all());
 
-        $gen->setData($transformer->getData());
+        $this->dispatch(new GenerateResult($transformer->getData(), $transformer->getHash()));
 
-        $gen->run();
-        $mp = $gen->getMember();
+        return view('awaiting_result', ['hash' => $transformer->getHash()]); //view with results
+    }
 
-        return view('result', ['mp' => $mp]); //view with results
+    public function pollResult(Request $request)
+    {
+        $hash = $request->input('hash');
+        $match = Match::where('hash', $hash)->first();
+        if (!is_null($match)) {
+            $mp = Member::find($match->member_id);
+            return response()->json([
+                'waiting' => false,
+                'mp' => [
+                    'id' => $mp->id,
+                    'name' => $mp->name,
+                    'party' => $mp->party,
+                    'consituency' => $mp->constituency,
+                ],
+            ]);
+        }
+
+        return response()->json([
+            'waiting' => true,
+        ]);
     }
 }

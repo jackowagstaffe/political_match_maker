@@ -299,10 +299,10 @@ class PolicyData
         $sets = $this->getSets();
         $sets_objects = [];
 
-        foreach($sets as $key => $value) {
+        foreach ($sets as $key => $value) {
             $data = [];
 
-            foreach($value as $policy_number) {
+            foreach ($value as $policy_number) {
                 $data[] = Policy::where('number', $policy_number)->first();
             }
 
