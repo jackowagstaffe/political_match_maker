@@ -61,6 +61,18 @@ class QuestionnaireController extends Controller
         $match = Match::where('hash', $hash)->first();
         if (!is_null($match)) {
             $mp = Member::find($match->member_id);
+
+            $positions = $mp->getPolicies();
+            $policies = [];
+            foreach ($positions as $position) {
+                $policies[] = [
+                    'policy' => $position->getPolicy()->text,
+                    'position' => $position->getPositonText(),
+                    'disagreement_width' => (50 - $position->getDisagreement())*2,
+                    'agreement_width' => $position->getAgreement(),
+                ];
+            }
+
             return response()->json([
                 'waiting' => false,
                 'mp' => [
@@ -68,6 +80,7 @@ class QuestionnaireController extends Controller
                     'name' => $mp->name,
                     'party' => $mp->party,
                     'consituency' => $mp->constituency,
+                    'policies' => $policies,
                 ],
             ]);
         }

@@ -22,6 +22,16 @@ $(function() {
             $("#mp-name").text(data.mp.name);
             $("#wait").hide();
             $("#result").show();
+
+            for (var i = 0; i < data.mp.policies.length; i++) {
+                var policy = data.mp.policies[i];
+
+                var policy_view = $('#policy-template').clone();
+                policy_view.find('.policy-name').text(policy.policy);
+                policy_view.find('.policy-text').text(policy.position);
+
+                $("#policies").append(policy_view);
+            }
         }
     }
 });
