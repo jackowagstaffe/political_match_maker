@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+use Illuminate\Http\Request;
+
+Route::get('/', function (Request $request) {
+    $request->session()->flush();
+
     return view('welcome');
 });
 

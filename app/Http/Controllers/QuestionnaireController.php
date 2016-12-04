@@ -14,6 +14,16 @@ use App\Jobs\GenerateResult;
 class QuestionnaireController extends Controller
 {
     protected $pages = 8;
+    protected $page_data = [
+        'welfare',
+        'social',
+        'foreignpolicy',
+        'taxation',
+        'business',
+        'health',
+        'education',
+        'environment',
+    ];
 
     public function page($page_id, PolicyData $policy_data)
     {
@@ -23,29 +33,39 @@ class QuestionnaireController extends Controller
         $view_data = [
             'page_id' => $page_id,
             'sets' => $policy_data->getSetsObjects(),
+            'page_data' => $this->page_data[$page_id - 1],
         ];
 
-        return view('pages/page_' . $page_id, $view_data);
+        return view('pages/page', $view_data);
     }
 
     public function submit($page_id, Request $request)
     {
+        //Save the questionnaire data
         $data = $request->all();
-
         foreach ($data as $key => $value) {
             //if starts policy_
             if (substr($key, 0, strlen('policy_')) === 'policy_') {
-                //only allow agree/disagree - no funny business
-                if (in_array($value, ['agree', 'disagree'])) {
+                //only allow agree/disagree/dont_know - no funny business
+                if (in_array($value, ['agree', 'disagree', 'dont_know'])) {
                     session([$key => $value]);
                 }
             }
         }
 
-        if ($page_id < $this->pages) {
-            return redirect()->route('page', ['page_id' => $page_id +1]);
+        //redirect to the appropriate place
+        if ($request->get('back', 'false') === 'true') {
+            if ($page_id > 1) {
+                return redirect()->route('page', ['page_id' => $page_id - 1]);
+            } else {
+                throw new \Exception("Cannot go back");
+            }
         } else {
-            return redirect()->route('result');
+            if ($page_id < $this->pages) {
+                return redirect()->route('page', ['page_id' => $page_id + 1]);
+            } else {
+                return redirect()->route('result');
+            }
         }
     }
 
@@ -53,12 +73,16 @@ class QuestionnaireController extends Controller
     {
         $transformer->setData(session()->all());
 
-        $this->dispatch(
-            new GenerateResult(
-                $transformer->getData(),
-                $transformer->getHash()
-            )
-        );
+        $match = Match::where('hash', $transformer->getHash())->first();
+
+        if (is_null($match)) {
+            $this->dispatch(
+                new GenerateResult(
+                    $transformer->getData(),
+                    $transformer->getHash()
+                )
+            );
+        }
 
         return view('awaiting_result', ['hash' => $transformer->getHash()]); //view with results
     }

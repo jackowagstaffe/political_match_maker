@@ -23,6 +23,11 @@ a:link:hover
     border-radius: 3px;
     margin: 20px;
 
+    .policy-name::first-letter
+    {
+        text-transform: uppercase;
+    }
+
     .policy-text::first-letter
     {
         text-transform: uppercase;
@@ -192,6 +197,11 @@ p, a , a:link, button
         .agree-label
         {
             border-right: 1px solid #ddd;
+        }
+
+        .disagree-label
+        {
+            border-left: 1px solid #ddd;
         }
 
         input[type=radio]:checked + label.agree-label
