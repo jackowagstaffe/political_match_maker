@@ -23,14 +23,20 @@ $(function() {
             $("#wait").hide();
             $("#result").show();
 
+            var source = $('#policy-template').html();
+            var template = Handlebars.compile(source);
+
             for (var i = 0; i < data.mp.policies.length; i++) {
                 var policy = data.mp.policies[i];
 
-                var policy_view = $('#policy-template').clone();
-                policy_view.find('.policy-name').text(policy.policy);
-                policy_view.find('.policy-text').text(policy.position);
+                var context = {
+                    policy_name: policy.policy,
+                    policy_text: policy.position,
+                    agreement_width: policy.agreement_width,
+                    disagreement_width: policy.disagreement_width
+                };
 
-                $("#policies").append(policy_view);
+                $('#policies').append(template(context));
             }
         }
     }

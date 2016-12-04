@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\GetData::class,
         Commands\CreatePolicies::class,
         Commands\DeletePolicies::class,
+        Commands\ClearBeanstalkdQueueCommand::class,
     ];
 
     /**

@@ -1,4 +1,5 @@
 $brand-primary: #00e39f;
+$negative-brand: #E30044;
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
@@ -7,6 +8,11 @@ $brand-primary: #00e39f;
 a:link:hover
 {
     text-decoration: none;
+}
+
+.brand-color
+{
+    color: $negative-brand;
 }
 
 .policy
@@ -152,6 +158,7 @@ p, a , a:link, button
     .pq-text
     {
         @extend .panel-heading;
+        text-transform: capitalize;
     }
 
     .pq-buttons

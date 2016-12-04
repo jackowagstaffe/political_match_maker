@@ -50,7 +50,12 @@ class QuestionnaireController extends Controller
     {
         $transformer->setData(session()->all());
 
-        $this->dispatch(new GenerateResult($transformer->getData(), $transformer->getHash()));
+        $this->dispatch(
+            new GenerateResult(
+                $transformer->getData(),
+                $transformer->getHash()
+            )
+        );
 
         return view('awaiting_result', ['hash' => $transformer->getHash()]); //view with results
     }
