@@ -70,6 +70,7 @@ a:link:hover
         position: absolute;
         font-size:12px;
         padding: 7px;
+        z-index: 10000;
     }
     .bar-text-right
     {
@@ -253,6 +254,14 @@ p, a , a:link, button
 
     .right-np
     {
+        padding-left: 15px;
+        margin-left: 0px;
+    }
+
+    .middle-np
+    {
+        padding-right: 15px;
+        margin-right: 0px;
         padding-left: 15px;
         margin-left: 0px;
     }

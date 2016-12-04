@@ -26,12 +26,12 @@
             <p class="text-center policy-name">@{{{ policy_name }}}</p>
             <h2 class="text-center policy-text">@{{ policy_text }}</h2>
             <div class="agreement-bar">
+                <span class="bar-text-right bar-text">agrees</span>
                 <div class="disagreement">
                     <span class="bar-text">disagrees</span>
                     <div class="disagreement-grey" style="width: @{{ disagreement_width }}%">
                     </div>
                 </div><div class="agreement" style="width: @{{ agreement_width }}%"></div>
-                <span class="bar-text-right bar-text">agrees</span>
             </div>
         </div>
     </script>
