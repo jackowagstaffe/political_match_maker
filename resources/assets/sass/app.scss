@@ -1,5 +1,6 @@
 $brand-primary: #00e39f;
 $negative-brand: #E30044;
+$third-brand: #e39f00;
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
@@ -22,9 +23,9 @@ a:link:hover
     border-radius: 3px;
     margin: 20px;
 
-    .policy-text
+    .policy-text::first-letter
     {
-        text-transform: capitalize;
+        text-transform: uppercase;
     }
 
     .agreement-bar
@@ -36,7 +37,7 @@ a:link:hover
     }
     .agreement
     {
-        background-color: #00e39f;
+        background-color: $brand-primary;
         height: 30px;
         position: relative;
         display: inline-block;
@@ -48,7 +49,7 @@ a:link:hover
         height: 30px;
         width: 50%;
         position: relative;
-        background-color: #E30044;
+        background-color: $negative-brand;
         display: inline-block;
         margin: 0px;
         padding: 0px;
@@ -85,7 +86,7 @@ a:link:hover
 
 .navbar-pink
 {
-	background-color: #E30044;
+	background-color: $negative-brand;
 	color: white;
 	border-radius: 0px;
 	border: none;
@@ -104,7 +105,7 @@ a:link:hover
 h1
 {
 	font-family: 'Fjalla One', sans-serif;
-	color: #E30044;
+	color: $negative-brand;
 }
 
 p, a , a:link, button
@@ -158,7 +159,11 @@ p, a , a:link, button
     .pq-text
     {
         @extend .panel-heading;
-        text-transform: capitalize;
+    }
+
+    .pq-text::first-letter
+    {
+        text-transform: uppercase;
     }
 
     .pq-buttons
@@ -190,12 +195,18 @@ p, a , a:link, button
 
         input[type=radio]:checked + label.agree-label
         {
-            background-color: #00e39f;
+            background-color: $brand-primary;
         }
 
         input[type=radio]:checked + label.disagree-label
         {
-            background-color: #E30044;
+            background-color: $negative-brand;
+            color: white;
+        }
+
+        input[type=radio]:checked + label.dont-know-label
+        {
+            background-color: $third-brand;
             color: white;
         }
     }
@@ -211,6 +222,14 @@ p, a , a:link, button
 {
     padding-left: 0px;
     margin-left: 0px;
+}
+
+.middle-np
+{
+    padding-left: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
 }
 
 @media (max-width: 767px)

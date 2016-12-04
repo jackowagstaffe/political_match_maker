@@ -20,7 +20,7 @@ class MemberController extends Controller
     public function index()
     {
         return view('mp/index', [
-            'mps' => Member::all(),
+            'mps' => Member::paginate(20),
         ]);
     }
 }

@@ -19,14 +19,10 @@ class SessionDataTransformer
                 $agrees = null;
 
                 if ($value === 'agree') {
-                    $agrees = true;
+                    $this->outData[$policy_id] = true;
                 } elseif ($value === 'disagree') {
-                    $agrees = false;
-                } else {
-                    throw new Exception('Invalid session data');
+                    $this->outData[$policy_id] = false;
                 }
-
-                $this->outData[$policy_id] = $agrees;
             }
         }
     }

@@ -7,4 +7,5 @@
     @foreach($mps as $mp)
         @include('components/mp-button', ['mp' => $mp])
     @endforeach
+    {{ $mps->links() }}
 @stop

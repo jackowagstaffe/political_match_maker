@@ -17,7 +17,7 @@ class QuestionnaireController extends Controller
 
     public function page($page_id, PolicyData $policy_data)
     {
-        if (!is_numeric($page_id)) {
+        if (!is_numeric($page_id) || $page_id < 1 || $page_id > $this->pages) {
             throw new \Exception('Not a valid page id');
         }
         $view_data = [
@@ -35,7 +35,10 @@ class QuestionnaireController extends Controller
         foreach ($data as $key => $value) {
             //if starts policy_
             if (substr($key, 0, strlen('policy_')) === 'policy_') {
-                session([$key => $value]);
+                //only allow agree/disagree - no funny business
+                if (in_array($value, ['agree', 'disagree'])) {
+                    session([$key => $value]);
+                }
             }
         }
 
